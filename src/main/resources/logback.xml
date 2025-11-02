@@ -1,0 +1,34 @@
+<configuration>
+  <property name="LOG_FILE" value="application.log"/>
+
+  <!-- 콘솔 출력 -->
+  <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoder 포맷에 따라 로그가 남음 -->
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- 파일 출력 -->
+  <!-- RollingFileAppender는 로그파일을 분할하여 관리한다. 따라서 일 단위로 관리 가능 -->
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_FILE}</file>
+  <!-- 어느 정도의 주기를 가지고 파일 분리 할 지 설정-->
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                                          <!-- gz(gzip) 사용하면 용량 압축      -->
+      <fileNamePattern>application.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+      <!--      -->
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- Logger 설정 -->
+  <!-- 예: Info 레벨 이상의 로그들이 아래 어펜더를 통해 기록된다. -->
+  <root level="info">
+    <appender-ref ref="CONSOLE" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

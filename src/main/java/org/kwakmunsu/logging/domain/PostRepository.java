@@ -1,4 +1,4 @@
-package org.kwakmunsu.logging;
+package org.kwakmunsu.logging.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

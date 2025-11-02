@@ -1,4 +1,4 @@
-package org.kwakmunsu.logging;
+package org.kwakmunsu.logging.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,4 +41,13 @@ public class Post {
                 .build();
     }
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }
